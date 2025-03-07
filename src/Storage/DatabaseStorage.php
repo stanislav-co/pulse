@@ -131,10 +131,6 @@ class DatabaseStorage implements Storage
             (int) CarbonInterval::fromString($keep)->totalMilliseconds
         );
 
-        if ($now->subDays(7)->isAfter($before)) {
-            $before = $now->subDays(7);
-        }
-
         $this->connection()
             ->table('pulse_values')
             ->where('timestamp', '<=', $before->getTimestamp())
